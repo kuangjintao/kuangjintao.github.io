@@ -145,6 +145,97 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/14/%E6%BC%8F%E6%89%AB%E6%8E%88%E6%9D%83%E7%A0%B4%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kuang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/14/%E6%BC%8F%E6%89%AB%E6%8E%88%E6%9D%83%E7%A0%B4%E8%A7%A3/" class="post-title-link" itemprop="url">漏扫授权破解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-07-14 19:56:05 / Modified: 21:37:15" itemprop="dateCreated datePublished" datetime="2022-07-14T19:56:05+08:00">2022-07-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><a href="#0x00-%E6%BC%8F%E6%89%AB%E6%8E%88%E6%9D%83%E7%A0%B4%E8%A7%A3">0x00 漏扫授权破解</a><ul>
+<li><a href="#0x01-%E5%AE%89%E8%A3%85%E6%BC%8F%E6%89%AB%E7%8E%AF%E5%A2%83">0x01 安装漏扫环境</a></li>
+<li><a href="#0x02-%E6%89%BE%E5%AF%BB%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81">0x02 找寻关键代码</a></li>
+<li><a href="#0x03-%E7%A0%B4%E8%A7%A3%E6%96%B9%E5%BC%8F1%E7%BB%95%E8%BF%87%E9%AA%8C%E8%AF%81">0x03 破解方式1：绕过验证</a></li>
+<li><a href="#0x04-%E7%A0%B4%E8%A7%A3%E6%96%B9%E5%BC%8F2%E7%94%9F%E6%88%90%E6%8E%88%E6%9D%83%E6%96%87%E4%BB%B6">0x04 破解方式2：生成授权文件</a><h1 id="0x00-漏扫授权破解"><a href="#0x00-漏扫授权破解" class="headerlink" title="0x00 漏扫授权破解"></a>0x00 漏扫授权破解</h1>虽然有AWVS可用，但为什么不支持一波国货呢？</li>
+</ul>
+</li>
+</ul>
+<h2 id="0x01-安装漏扫环境"><a href="#0x01-安装漏扫环境" class="headerlink" title="0x01 安装漏扫环境"></a>0x01 安装漏扫环境</h2><ol>
+<li>在VMWare上安装漏扫产品</li>
+<li>本机新增一块<code>Microsoft Loopback Adapter</code>，并为之设置合适的IP地址<br><img src="https://raw.githubusercontent.com/kuangjintao/Picture/main/PicGo/20220714202404.png" alt="添加过时硬件"></li>
+<li>VMWare上设置漏扫产品的网络连接，使之桥接至新增的环回网卡</li>
+<li>在本机浏览器上访问漏扫网址</li>
+</ol>
+<p><strong>注：</strong>这种网络连接方式无需修改漏扫产品的IP，即可在本机访问漏扫web页面</p>
+<h2 id="0x02-找寻关键代码"><a href="#0x02-找寻关键代码" class="headerlink" title="0x02 找寻关键代码"></a>0x02 找寻关键代码</h2><ol>
+<li>开启漏扫的SSH、SFTP服务</li>
+<li>连接SFTP，下载并反编译漏扫的web程序</li>
+<li>在本机上抓取<code>上传授权文件</code>的HTTP流量</li>
+<li>结合web框架，在反编译后的代码中找出<code>上传授权文件</code>对应的函数</li>
+</ol>
+<h2 id="0x03-破解方式1：绕过验证"><a href="#0x03-破解方式1：绕过验证" class="headerlink" title="0x03 破解方式1：绕过验证"></a>0x03 破解方式1：绕过验证</h2><ol>
+<li>一层一层函数地追踪，寻找<code>验证授权文件</code>的逻辑分支</li>
+<li>更改代码的判断逻辑。对于java代码，可以修改java文件的逻辑，再重新编译为class文件，也可以使用<a target="_blank" rel="noopener" href="http://hg.openjdk.java.net/code-tools/asmtools">asmtools</a>直接修改class文件中的逻辑；对于dll文件或so文件，通过在IDA中修改跳转方式，或修改关键寄存器的值，来修改判断逻辑</li>
+<li>用修改后的文件替换掉漏扫中原有的文件</li>
+<li>重启漏扫，上传文件触发授权验证</li>
+</ol>
+<h2 id="0x04-破解方式2：生成授权文件"><a href="#0x04-破解方式2：生成授权文件" class="headerlink" title="0x04 破解方式2：生成授权文件"></a>0x04 破解方式2：生成授权文件</h2><ol>
+<li>一层一层函数地追踪，寻找<code>解密授权文件</code>的算法</li>
+<li>逆向操作，编写生成授权文件的代码。可以将原java代码引用为依赖，或在自己的代码中加载dll、so文件，来复用一些有用的函数</li>
+<li>生成并上传授权文件</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/04/picturebed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -405,7 +496,7 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
