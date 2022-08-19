@@ -176,7 +176,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-08-19 18:54:15" itemprop="dateModified" datetime="2022-08-19T18:54:15+08:00">2022-08-19</time>
+                <time title="Modified: 2022-08-19 19:13:37" itemprop="dateModified" datetime="2022-08-19T19:13:37+08:00">2022-08-19</time>
               </span>
 
           
@@ -195,6 +195,7 @@
 <li><a href="#0x01-%E5%AE%89%E8%A3%85openssl">0x01 安装OPENSSL</a></li>
 <li><a href="#0x02-%E5%AE%89%E8%A3%85python">0x02 安装python</a></li>
 <li><a href="#0x03-%E4%BF%AE%E6%94%B9yum%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">0x03 修改yum配置文件</a></li>
+<li><a href="#0x04-%E6%9B%B4%E6%8D%A2pip%E6%BA%90">0x04 更换pip源</a></li>
 </ul>
 </li>
 </ul>
@@ -223,6 +224,12 @@
 <li>如果将<code>/usr/bin/python</code>指向python3的话，需要修改yum配置文件，因为yum使用的是python2</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">将首行修改为 <span class="comment">#!/usr/bin/python2</span></span></span><br><span class="line">vim /usr/bin/yum</span><br><span class="line">vim /usr/libexec/urlgrabber-ext-down</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x04-更换pip源"><a href="#0x04-更换pip源" class="headerlink" title="0x04 更换pip源"></a>0x04 更换pip源</h2><ol>
+<li>将pip源更换为国内镜像</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vi ~/.pip/pip.conf</span><br><span class="line"></span><br><span class="line">[global]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+
       
 
     </div>
