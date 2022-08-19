@@ -168,10 +168,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-07-14 21:40:43 / Modified: 22:39:46" itemprop="dateCreated datePublished" datetime="2022-07-14T21:40:43+08:00">2022-07-14</time>
+              <time title="Created: 2022-07-14 21:40:43" itemprop="dateCreated datePublished" datetime="2022-07-14T21:40:43+08:00">2022-07-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-08-19 18:44:47" itemprop="dateModified" datetime="2022-08-19T18:44:47+08:00">2022-08-19</time>
+              </span>
 
           
 
@@ -198,7 +204,7 @@
 <li>解压至<code>/usr/local/src/</code>，命令为<code>tar -xf openssl-1.1.1q.tar.gz -C /usr/local/src/</code></li>
 <li>在解压目录进行编译安装，指定安装目录为<code>/usr/local/openssl</code></li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/local/openssl</span><br><span class="line">./config  --prefix=/usr/local/openssl shared</span><br><span class="line">./make -j4</span><br><span class="line">./make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/local/openssl</span><br><span class="line">./config  --prefix=/usr/local/openssl shared</span><br><span class="line">make -j4</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 <ol start="4">
 <li>（可选）在<code>/usr/lib64</code>下创建软连接</li>
 </ol>
@@ -209,7 +215,7 @@
 <h2 id="0x02-安装python"><a href="#0x02-安装python" class="headerlink" title="0x02 安装python"></a>0x02 安装python</h2><ol>
 <li>下载源码、解压，编译安装</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/local/python3.10</span><br><span class="line">./configure -C --with-openssl=/usr/local/openssl  --with-openssl-rpath=auto  --prefix=/usr/local/python3.10</span><br><span class="line">./make -j4</span><br><span class="line">./make alinstall</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/local/python3.10</span><br><span class="line">./configure -C --with-openssl=/usr/local/openssl  --with-openssl-rpath=auto  --prefix=/usr/local/python3.10</span><br><span class="line">make -j4</span><br><span class="line">make alinstall</span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>修改<code>/usr/bin</code>下的软链接</li>
 </ol>
